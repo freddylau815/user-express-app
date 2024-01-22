@@ -1,0 +1,20 @@
+[
+  {
+    "username": "Freddy",
+    "email": "freddy@email.com",
+    "password": "12345678",
+    "id": "6d25613f-8fdb-49c3-ab1a-92d4c4c64434"
+  },
+  {
+    "username": "Bill",
+    "email": "bill@email.com",
+    "password": "12345678",
+    "id": "77c27d98-1525-485e-98ad-add95266c959"
+  },
+  {
+    "username": "James",
+    "email": "james@email.com",
+    "password": "12345678",
+    "id": "e536dd45-9ba3-4e9e-802a-6529a1079d4f"
+  }
+]
