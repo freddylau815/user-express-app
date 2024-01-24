@@ -1,12 +1,22 @@
 const express = require('express');
-
-
 const cors = require('cors')
 
 
 const PORT = 3332;
 
 const app = express();
+
+// db.query("INSERT INTO users (username, email, password) VALUES ('freddy', 'freddy@email.com', 'password123')", (err, results) => {
+//   if (err) return console.log(err);
+
+//   console.log(results)
+// })
+
+// db.query('SELECT * FROM users', (err, results) => {
+//   if (err) return console.log(err);
+
+//   console.log(results)
+// })
 
 const api_routes = require('./routes/api_routes')
 
