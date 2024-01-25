@@ -1,9 +1,7 @@
 const router = require('express').Router()
 const db = require('../db/connection')
 
-// Automatically looking for INDEX.js because of 'index'
-// const {getUserData, saveUserData} = require('../db')
-
+// GET
 // Route to retreive/ .GET all users from the json database
 router.get('/users', async (requestObj, responseObj) => {
   // Make a query to the db and get all rows from the users table 
@@ -16,7 +14,6 @@ router.get('/users', async (requestObj, responseObj) => {
   }
 
 });
-
 
 // POST
 // Route to add/ .POST a user to the json database
@@ -36,19 +33,16 @@ router.post('/users', async (requestObj, responseObj) => {
       });
     }
 
-      // Run a query to INSERT a new user into the user's table, with our requestObj.body data (username, email, password)
-  const [result] = await db.query('INSERT INTO users (username, email, password) VALUES (?,?,?)',
-  [userData.username, userData.email, userData.password])
+    // Run a query to INSERT a new user into the user's table, with our requestObj.body data (username, email, password)
+    const [result] = await db.query('INSERT INTO users (username, email, password) VALUES (?,?,?)',
+      [userData.username, userData.email, userData.password])
 
-  
-  responseObj.json({
-    message: 'User added successfully',
-    insertID: result.insertId
-
+    responseObj.json({
+      message: 'User added successfully',
+      insertID: result.insertId
 
     })
 
-  
   } catch (err) {
     console.log(err)
   }
@@ -61,23 +55,22 @@ router.get('/users/:id', async (requestObj, responseObj) => {
 
   // Params makes an object with key value pair so id: (whatever user puts)
   const user_id = requestObj.params.id;
-  
-  try { const [results] = await db.query('SELECT * FROM users WHERE id = ?', [user_id]);
 
-  if (results.length) {
-    return responseObj.json(results[0])
-  } 
-  
-  responseObj.json({
-    error: 404,
-    message: 'User not found with that ID'
-  })
+  try {
+    const [results] = await db.query('SELECT * FROM users WHERE id = ?', [user_id]);
+
+    if (results.length) {
+      return responseObj.json(results[0])
+    }
+
+    responseObj.json({
+      error: 404,
+      message: 'User not found with that ID'
+    })
 
   } catch (err) {
     console.log(err)
   }
-
-  
 })
 
 // DELETE Route to remove user from database
@@ -97,21 +90,12 @@ router.delete('/user/:id', async (requestObj, responseObj) => {
     console.log(err)
   }
 
-
-
-
-
-
-
-
   // Filter out the user object matching our parm id from the user array
   // As long as userObj.id is NOT the id entered in PARAM give it back to me 
   // const filtered = users.filter(userObj => userObj.id !== user_id)
 
   // Overwrite the old array with updated array ( miss one user )
   // await saveUserData(filtered)
-
-  
 
 });
 
